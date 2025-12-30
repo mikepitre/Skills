@@ -32,3 +32,4 @@ Common fixes:
 ## Reference material
 
 - See `references/swift-6-2-concurrency.md` for Swift 6.2 changes, patterns, and examples.
+- See `references/swiftui-concurrency-tour-wwdc.md` for SwiftUI-specific concurrency guidance.
