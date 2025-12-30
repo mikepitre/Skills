@@ -26,7 +26,78 @@ Apply a consistent structure and dependency pattern to SwiftUI views, with a foc
 - Inject services and shared models via `@Environment`; keep views small and composable.
 - Split large views into subviews rather than introducing a view model.
 
-### 3) View model handling (only if already present)
+### 3) Split large bodies and view properties
+- If `body` grows beyond a screen or has multiple logical sections, split it into smaller subviews.
+- Extract large computed view properties (`var header: some View { ... }`) into dedicated `View` types when they carry state or complex branching.
+- It's fine to keep related subviews as computed view properties in the same file; extract to a standalone `View` struct only when it structurally makes sense or when reuse is intended.
+- Prefer passing small inputs (data, bindings, callbacks) over reusing the entire parent view state.
+
+Example (extracting a section):
+
+```swift
+var body: some View {
+    VStack(alignment: .leading, spacing: 16) {
+        HeaderSection(title: title, isPinned: isPinned)
+        DetailsSection(details: details)
+        ActionsSection(onSave: onSave, onCancel: onCancel)
+    }
+}
+```
+
+Example (long body → shorter body + computed views in the same file):
+
+```swift
+var body: some View {
+    List {
+        header
+        filters
+        results
+        footer
+    }
+}
+
+private var header: some View {
+    VStack(alignment: .leading, spacing: 6) {
+        Text(title).font(.title2)
+        Text(subtitle).font(.subheadline)
+    }
+}
+
+private var filters: some View {
+    ScrollView(.horizontal, showsIndicators: false) {
+        HStack {
+            ForEach(filterOptions, id: \.self) { option in
+                FilterChip(option: option, isSelected: option == selectedFilter)
+                    .onTapGesture { selectedFilter = option }
+            }
+        }
+    }
+}
+```
+
+Example (extracting a complex computed view):
+
+```swift
+private var header: some View {
+    HeaderSection(title: title, subtitle: subtitle, status: status)
+}
+
+private struct HeaderSection: View {
+    let title: String
+    let subtitle: String?
+    let status: Status
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(title).font(.headline)
+            if let subtitle { Text(subtitle).font(.subheadline) }
+            StatusBadge(status: status)
+        }
+    }
+}
+```
+
+### 4) View model handling (only if already present)
 - Do not introduce a view model unless the request or existing code clearly calls for one.
 - If a view model exists, make it non-optional when possible.
 - Pass dependencies to the view via `init`, then pass them into the view model in the view's `init`.
@@ -42,7 +113,7 @@ init(dependency: Dependency) {
 }
 ```
 
-### 4) Observation usage
+### 5) Observation usage
 - For `@Observable` reference types, store them as `@State` in the root view.
 - Pass observables down explicitly as needed; avoid optional state unless required.
 
