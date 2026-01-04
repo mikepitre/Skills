@@ -72,6 +72,97 @@
     ]
   },
   {
+    "name": "swiftui-ui-patterns",
+    "folder": "swiftui-ui-patterns",
+    "description": "Best practices and example-driven guidance for building SwiftUI views and components. Use when creating or refactoring SwiftUI UI, designing tab architecture with TabView, composing screens, or needing component-specific patterns and examples.",
+    "references": [
+      {
+        "title": "App scaffolding wiring",
+        "file": "references/app-scaffolding-wiring.md"
+      },
+      {
+        "title": "Components Index",
+        "file": "references/components-index.md"
+      },
+      {
+        "title": "Controls (Toggle, Slider, Picker)",
+        "file": "references/controls.md"
+      },
+      {
+        "title": "Deep links and navigation",
+        "file": "references/deeplinks.md"
+      },
+      {
+        "title": "Focus handling and field chaining",
+        "file": "references/focus.md"
+      },
+      {
+        "title": "Form",
+        "file": "references/form.md"
+      },
+      {
+        "title": "Grids",
+        "file": "references/grids.md"
+      },
+      {
+        "title": "Haptics",
+        "file": "references/haptics.md"
+      },
+      {
+        "title": "Input toolbar (bottom anchored)",
+        "file": "references/input-toolbar.md"
+      },
+      {
+        "title": "List and Section",
+        "file": "references/list.md"
+      },
+      {
+        "title": "Matched transitions",
+        "file": "references/matched-transitions.md"
+      },
+      {
+        "title": "Media (images, video, viewer)",
+        "file": "references/media.md"
+      },
+      {
+        "title": "NavigationStack",
+        "file": "references/navigationstack.md"
+      },
+      {
+        "title": "Overlay and toasts",
+        "file": "references/overlay.md"
+      },
+      {
+        "title": "ScrollView and Lazy stacks",
+        "file": "references/scrollview.md"
+      },
+      {
+        "title": "Searchable",
+        "file": "references/searchable.md"
+      },
+      {
+        "title": "Sheets",
+        "file": "references/sheets.md"
+      },
+      {
+        "title": "Split views and columns",
+        "file": "references/split-views.md"
+      },
+      {
+        "title": "TabView",
+        "file": "references/tabview.md"
+      },
+      {
+        "title": "Theming and dynamic type",
+        "file": "references/theming.md"
+      },
+      {
+        "title": "Top bar overlays (iOS 26+ and fallback)",
+        "file": "references/top-bar.md"
+      }
+    ]
+  },
+  {
     "name": "swiftui-view-refactor",
     "folder": "swiftui-view-refactor",
     "description": "Refactor and review SwiftUI view files for consistent structure, dependency injection, and Observation usage. Use when asked to clean up a SwiftUI view\u2019s layout/ordering, handle view models safely (non-optional when possible), or standardize how dependencies and @Observable state are initialized and passed.",
